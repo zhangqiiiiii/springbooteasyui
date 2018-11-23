@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<mapper namespace="com.baizhi.dao.UserDao">
+	<select id="selectAll" resultType="User">
+		select * from t_user
+		<where>
+			<if test="username!=null">
+				username like #{username}
+			</if>
+		</where>
+		limit #{start},#{pagesize}
+	</select>                                                      
+	<select id="selectOne" resultType="User">
+		select * from t_user where id=#{id};
+	</select>
+	<delete id="deleteByIds">
+		delete from t_user where id in
+		<foreach collection="array" separator="," close=")" open="(" item="id">
+			#{id}
+		</foreach>
+	</delete>
+	<insert id="insert">
+		insert into t_user values(0,#{username},#{password});
+	</insert>
+	<update id="updateOne">
+		update t_user set username=#{username},password=#{password}
+		 where id=#{id}
+	</update>
+	<select id="getCount" resultType="int">
+		select count(*) from t_user
+		<where>
+			<if test="username!=null">
+				username like #{username}
+			</if>
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,43 @@
+server:
+  #Ƕ��tomcat�˿ں�
+  port: 8081
+  #��Ŀ��
+  context-path: /easyui
+  #�Ȳ���
+  jsp-servlet:
+    init-parameters:
+      development: true
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/baizhi
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    # type: com.alibaba.druid.pool.DruidDataSource
+    #    url: jdbc:oracle:thin:@localhost:1521:XE
+    #    username: hr
+    #    password: hr
+    #    driver-class-name: oracle.jdbc.OracleDriver#
+  #��ͼ������
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  #���뼯��ʽ
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+    #�ļ��ϴ�
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 1000Mb
+
+
+mybatis:
+  #��ʵ���������
+  type-aliases-package: com.baizhi.entity
+  #ָ��mapper�ļ���·��
+  mapper-locations: com/baizhi/dao/*Dao.xml
+
